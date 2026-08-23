@@ -26,6 +26,14 @@ public class MainApp {
             account = new CurrentAccount(number, name, balance);
 
         bank.createAccount(account);
+        String accountType;
+
+        if (choice == 1)
+            accountType = "Savings";
+        else
+            accountType = "Current";
+
+        AccountDAO.saveAccount(account, accountType);
 
         int option;
         do {
@@ -40,15 +48,23 @@ public class MainApp {
 
             try {
                 switch (option) {
-                    case 1:
-                        System.out.print("Enter amount: ");
-                        account.deposit(sc.nextDouble());
-                        break;
+                case 1:
+                    System.out.print("Enter amount: ");
+                    account.deposit(sc.nextDouble());
+                    AccountDAO.updateBalance(
+                        account.getAccountNumber(),
+                        account.getBalance()
+                    );
+                    break;
 
-                    case 2:
-                        System.out.print("Enter amount: ");
-                        account.withdraw(sc.nextDouble());
-                        break;
+                case 2:
+                    System.out.print("Enter amount: ");
+                    account.withdraw(sc.nextDouble());
+                    AccountDAO.updateBalance(
+                        account.getAccountNumber(),
+                        account.getBalance()
+                    );
+                    break;
 
                     case 3:
                         account.displayDetails();

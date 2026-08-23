@@ -1,4 +1,5 @@
 abstract class Account {
+
     private String accountNumber;
     private String holderName;
     protected double balance;
@@ -11,16 +12,29 @@ abstract class Account {
         this.balance = balance;
     }
 
-    public String getAccountNumber() { return accountNumber; }
-    public String getHolderName() { return holderName; }
-    public double getBalance() { return balance; }
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getHolderName() {
+        return holderName;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public abstract void deposit(double amount);
+
+    public abstract void withdraw(double amount)
+            throws BankingException;
 
     public abstract void calculateInterest();
 
     public void displayDetails() {
         System.out.println("Bank: " + BANK_NAME);
-        System.out.println("Account No: " + accountNumber);
-        System.out.println("Holder: " + holderName);
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Holder Name: " + holderName);
         System.out.println("Balance: " + balance);
     }
 }
